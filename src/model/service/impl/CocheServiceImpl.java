@@ -30,7 +30,7 @@ public class CocheServiceImpl implements CocheService {
 				messages.put("Model Error -> ", "El campo Modelo no puede estar vacío");
 			}
 			if (messages.isEmpty()) {
-				cocheRepository.modificar(c);
+				cocheRepository.alta(c);
 				messages.put("Alta Correcta -> ", "El vehiculo ha sido creado correctamente");
 			}
 		} else {
