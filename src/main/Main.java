@@ -92,8 +92,7 @@ public class Main {
 			System.out.println("Introduce Model of car");
 			String model = sc.nextLine();
 			System.out.println("Introduce Km's of car");
-			Integer km = 0;
-			Integer.parseInt(sc.nextLine());
+			Integer km = Integer.parseInt(sc.nextLine());
 			System.out.println("Introduce Matricula of car");
 			String matricula = sc.nextLine();
 			
