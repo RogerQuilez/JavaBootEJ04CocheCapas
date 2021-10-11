@@ -103,7 +103,7 @@ public class Main {
 			return coche;
 			
 		} catch (NumberFormatException e) {
-			System.out.println("El campo kilómetros solo acepta números");
+			System.out.println("Error Null -> El campo kilómetros solo acepta números");
 			return null;
 		}
 		
