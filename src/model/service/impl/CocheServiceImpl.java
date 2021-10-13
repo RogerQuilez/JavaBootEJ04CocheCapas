@@ -18,27 +18,7 @@ public class CocheServiceImpl implements CocheService {
 	 */
 	@Override
 	public HashMap<String, String> alta(Coche c) {
-		HashMap<String, String> messages = new HashMap<>();
-		if (c != null) {
-			if (c.getMarca().length() == 0) {
-				messages.put("Marca Error -> ", "El campo Marca no puede estar vacío");
-			} 
-			if (c.getMatricula().length() != 7) {
-				messages.put("Matricula Error -> ", "El campo Matricula debe tener 7 caracteres");
-			}
-			if (c.getModel().length() == 0) {
-				messages.put("Model Error -> ", "El campo Modelo no puede estar vacío");
-			}
-			if (messages.isEmpty()) {
-				if (cocheRepository.alta(c))
-					messages.put("Alta Correcta -> ", "El vehiculo ha sido creado correctamente");
-				else 
-					messages.put("Persistence Error -> ", "Error contra la base de datos");
-			}
-		} else {
-			messages.put("Null Error -> ", "El objeto coche no puede ser nulo");
-		}
-		return messages;
+		return altaAndModificar(c, "Alta");
 	}
 
 	/**
@@ -66,27 +46,7 @@ public class CocheServiceImpl implements CocheService {
 	 */
 	@Override
 	public HashMap<String, String> modificar(Coche c) {
-		HashMap<String, String> messages = new HashMap<>();
-		if (c != null) {
-			if (c.getMarca().length() == 0) {
-				messages.put("Marca Error -> ", "El campo Marca no puede estar vacío");
-			} 
-			if (c.getMatricula().length() != 7) {
-				messages.put("Matricula Error -> ", "El campo Matricula debe tener 7 caracteres");
-			}
-			if (c.getModel().length() == 0) {
-				messages.put("Model Error -> ", "El campo Modelo no puede estar vacío");
-			}
-			if (messages.isEmpty()) {
-				if (cocheRepository.modificar(c))
-					messages.put("Modificación Correcta -> ", "El vehiculo ha sido modificado correctamente");
-				else
-					messages.put("Persistence Error -> ", "Error contra la base de datos");
-			}
-		} else {
-			messages.put("Null Error -> ", "El objeto coche no puede ser nulo");
-		}
-		return messages;
+		return altaAndModificar(c, "Modificar");
 	}
 
 	/**
@@ -104,6 +64,31 @@ public class CocheServiceImpl implements CocheService {
 	@Override
 	public List<Coche> listar() {
 		return cocheRepository.listar();
+	}
+	
+	public HashMap<String, String> altaAndModificar(Coche c, String message) {
+		
+		HashMap<String, String> messages = new HashMap<>();
+		if (c != null) {
+			if (c.getMarca().length() == 0) {
+				messages.put("Marca Error -> ", "El campo Marca no puede estar vacío");
+			} 
+			if (c.getMatricula().length() != 7) {
+				messages.put("Matricula Error -> ", "El campo Matricula debe tener 7 caracteres");
+			}
+			if (c.getModel().length() == 0) {
+				messages.put("Model Error -> ", "El campo Modelo no puede estar vacío");
+			}
+			if (messages.isEmpty()) {
+				if (this.cocheRepository.alta(c))
+					messages.put(message +" Correcta -> ", "El vehiculo ha sido creado correctamente");
+				else 
+					messages.put("Persistence Error -> ", "Error contra la base de datos");
+			}
+		} else {
+			messages.put("Null Error -> ", "El objeto coche no puede ser nulo");
+		}
+		return messages;
 	}
 
 }
