@@ -66,6 +66,11 @@ public class CocheServiceImpl implements CocheService {
 		return cocheRepository.listar();
 	}
 	
+	/**
+	 * @param c -> Objeto coche
+	 * @param message -> Mensaje indicando si es Alta o Modificación
+	 * @return -> Devuelve un objeto HashMap indicando si está todo correcto o han habido errores
+	 */
 	public HashMap<String, String> altaAndModificar(Coche c, String message) {
 		
 		HashMap<String, String> messages = new HashMap<>();
