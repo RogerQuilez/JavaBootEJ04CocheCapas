@@ -31,19 +31,16 @@ public class Main {
 					break;
 			
 				case 1:
-					Coche altaCoche = new Coche();
-					message = cocheService.alta(getCar(sc, altaCoche));
+					message = cocheService.alta(getCar(sc, new Coche()));
 					printMessage(message);
 					break;
 					
 				case 2:
-					List<Coche> listCoche = cocheService.listar();
-					printListCoche(listCoche);
+					printListCoche(cocheService.listar());
 					break;
 					
 				case 3:
-					Coche coche = getCarById(sc, cocheService);
-					printCar(coche);
+					printCar(getCarById(sc, cocheService));
 					break;
 					
 				case 4:
