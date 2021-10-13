@@ -30,8 +30,10 @@ public class CocheServiceImpl implements CocheService {
 				messages.put("Model Error -> ", "El campo Modelo no puede estar vacío");
 			}
 			if (messages.isEmpty()) {
-				cocheRepository.alta(c);
-				messages.put("Alta Correcta -> ", "El vehiculo ha sido creado correctamente");
+				if (cocheRepository.alta(c))
+					messages.put("Alta Correcta -> ", "El vehiculo ha sido creado correctamente");
+				else 
+					messages.put("Persistence Error -> ", "Error contra la base de datos");
 			}
 		} else {
 			messages.put("Null Error -> ", "El objeto coche no puede ser nulo");
@@ -48,8 +50,10 @@ public class CocheServiceImpl implements CocheService {
 		HashMap<String, String> messages = new HashMap<>();
 		Coche coche = cocheRepository.obtener(id);
 		if (coche != null) {			
-			cocheRepository.baja(id);
-			messages.put("Baja Correcta -> ", "El vehiculo se ha eliminado correctamente");
+			if (cocheRepository.baja(id))
+				messages.put("Baja Correcta -> ", "El vehiculo se ha eliminado correctamente");
+			else
+				messages.put("Persistence Error -> ", "Error contra la base de datos");
 		} else {
 			messages.put("Null Error -> ", "El coche con la ID " + id + " no se encuentra en la bbdd");
 		}
@@ -74,8 +78,10 @@ public class CocheServiceImpl implements CocheService {
 				messages.put("Model Error -> ", "El campo Modelo no puede estar vacío");
 			}
 			if (messages.isEmpty()) {
-				cocheRepository.modificar(c);
-				messages.put("Modificación Correcta -> ", "El vehiculo ha sido modificado correctamente");
+				if (cocheRepository.modificar(c))
+					messages.put("Modificación Correcta -> ", "El vehiculo ha sido modificado correctamente");
+				else
+					messages.put("Persistence Error -> ", "Error contra la base de datos");
 			}
 		} else {
 			messages.put("Null Error -> ", "El objeto coche no puede ser nulo");
