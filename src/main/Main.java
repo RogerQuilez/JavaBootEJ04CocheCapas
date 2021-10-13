@@ -27,6 +27,9 @@ public class Main {
 			
 			switch(opcion) {
 			
+				case 0:
+					break;
+			
 				case 1:
 					Coche altaCoche = new Coche();
 					message = cocheService.alta(getCar(sc, altaCoche));
