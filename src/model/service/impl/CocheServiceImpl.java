@@ -75,7 +75,7 @@ public class CocheServiceImpl implements CocheService {
 			}
 			if (messages.isEmpty()) {
 				cocheRepository.modificar(c);
-				messages.put("Alta Correcta -> ", "El vehiculo ha sido modificado correctamente");
+				messages.put("Modificación Correcta -> ", "El vehiculo ha sido modificado correctamente");
 			}
 		} else {
 			messages.put("Null Error -> ", "El objeto coche no puede ser nulo");

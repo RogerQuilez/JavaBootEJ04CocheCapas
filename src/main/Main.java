@@ -40,10 +40,7 @@ public class Main {
 					
 				case 3:
 					Coche coche = getCarById(sc, cocheService);
-					if (coche != null)
-						printCar(coche);
-					else
-						System.out.println("El coche no se encuentra en la base de datos");
+					printCar(coche);
 					break;
 					
 				case 4:
@@ -53,9 +50,8 @@ public class Main {
 					break;
 					
 				case 5:
-					System.out.println("Introduzca ID del coche que desea eliminar");
-					Integer id = Integer.parseInt(sc.nextLine());
-					message = cocheService.baja(id);
+					Coche deleteCoche = getCarById(sc, cocheService);
+					message = cocheService.baja(deleteCoche.getId());
 					printMessage(message);
 					break;
 			}
@@ -139,9 +135,18 @@ public class Main {
 	 * @return Retorna un coche obtenido por el id que proporciona el cliente
 	 */
 	public static Coche getCarById(Scanner sc, CocheService cocheService) {
-		System.out.println("Introduce la ID del coche");
-		Integer id = Integer.parseInt(sc.nextLine());
-		return cocheService.obtener(id);
+		Integer id = null;
+		Coche coche;
+		
+		do {
+			System.out.println("Por favor, introduce la ID del coche");
+			id = Integer.parseInt(sc.nextLine());
+			coche = cocheService.obtener(id);
+			if (coche == null) 
+				System.out.println("-----------ID Inválida----------");
+		} while(coche == null);
+		
+		return coche;
 	}
 	
 	/**
